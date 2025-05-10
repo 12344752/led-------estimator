@@ -15,31 +15,38 @@
       padding: 10px;
       margin: 10px 0;
     }
-    .result {
-      font-weight: bold;
-      margin-top: 20px;
-    }
   </style>
 </head>
 <body>
-  <h2>LED Estimator</h2>
-  <label>Jumlah LED:</label>
-  <input type="number" id="jumlah" placeholder="Misal 300">
+  <h1>LED Estimator</h1>
+  <label for="jumlah">Jumlah LED:</label>
+  <input type="number" id="jumlah" placeholder="Masukkan jumlah LED">
 
-  <label>Daya per LED (watt):</label>
-  <input type="number" id="daya" placeholder="Misal 0.3">
+  <label for="jenis">Jenis LED:</label>
+  <select id="jenis">
+    <option value="5050">5050 (0.24W)</option>
+    <option value="modul1.2">Modul Mata 3 1.2W</option>
+    <option value="modul1.5">Modul Mata 3 1.5W</option>
+  </select>
 
-  <button onclick="hitung()">Hitung Konsumsi Daya</button>
+  <button onclick="hitung()">Hitung</button>
 
-  <div class="result" id="hasil"></div>
+  <h2>Hasil:</h2>
+  <div id="hasil"></div>
 
   <script>
     function hitung() {
-      let jumlah = parseFloat(document.getElementById("jumlah").value);
-      let daya = parseFloat(document.getElementById("daya").value);
-      let total = jumlah * daya;
+      const jumlah = parseInt(document.getElementById("jumlah").value);
+      const jenis = document.getElementById("jenis").value;
+      let wattPerLed = 0;
+
+      if (jenis === "5050") wattPerLed = 0.24;
+      else if (jenis === "modul1.2") wattPerLed = 1.2;
+      else if (jenis === "modul1.5") wattPerLed = 1.5;
+
+      const totalWatt = jumlah * wattPerLed;
       document.getElementById("hasil").innerText = 
-        `Total konsumsi daya: ${total.toFixed(2)} Watt`;
+        `Total Daya: ${totalWatt.toFixed(2)} watt`;
     }
   </script>
 </body>
