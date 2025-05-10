@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>LED Estimator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 500px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+    input, select, button {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+    }
+    .result {
+      font-weight: bold;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h2>LED Estimator</h2>
+  <label>Jumlah LED:</label>
+  <input type="number" id="jumlah" placeholder="Misal 300">
+
+  <label>Daya per LED (watt):</label>
+  <input type="number" id="daya" placeholder="Misal 0.3">
+
+  <button onclick="hitung()">Hitung Konsumsi Daya</button>
+
+  <div class="result" id="hasil"></div>
+
+  <script>
+    function hitung() {
+      let jumlah = parseFloat(document.getElementById("jumlah").value);
+      let daya = parseFloat(document.getElementById("daya").value);
+      let total = jumlah * daya;
+      document.getElementById("hasil").innerText = 
+        `Total konsumsi daya: ${total.toFixed(2)} Watt`;
+    }
+  </script>
+</body>
+</html>
